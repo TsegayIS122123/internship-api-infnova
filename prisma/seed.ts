@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('🌱 Seeding database...');
 
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@infnova.com';
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@example.com';
   const adminPassword = process.env.ADMIN_PASSWORD || 'Admin@123456';
 
   const existingAdmin = await prisma.admin.findUnique({
@@ -29,7 +29,6 @@ async function main() {
     console.log(`ℹ️ Admin already exists: ${adminEmail}`);
   }
 
-  //  sample applicants 
   const sampleApplicants = [
     {
       firstName: 'Amanuel',
@@ -38,7 +37,7 @@ async function main() {
       phone: '+251911234567',
       status: 'PENDING',
       track: 'BACKEND_DEVELOPMENT',
-      notes: 'Strong Node.js and TypeScript experience. Graduated from Addis Ababa University.',
+      notes: 'Strong Node.js and TypeScript experience.',
     },
     {
       firstName: 'Selamawit',
@@ -47,7 +46,7 @@ async function main() {
       phone: '+251912345678',
       status: 'SHORTLISTED',
       track: 'FRONTEND_DEVELOPMENT',
-      notes: 'Excellent React and UI/UX skills. 3 years experience at Ethiopian tech companies.',
+      notes: 'Excellent React and UI/UX skills.',
     },
     {
       firstName: 'Henok',
@@ -56,7 +55,7 @@ async function main() {
       phone: '+251913456789',
       status: 'ACCEPTED',
       track: 'MOBILE_DEVELOPMENT',
-      notes: 'Strong React Native and Flutter experience. Built multiple apps startups.',
+      notes: 'Strong React Native and Flutter experience.',
     },
     {
       firstName: 'Meron',
@@ -65,7 +64,7 @@ async function main() {
       phone: '+251914567890',
       status: 'REJECTED',
       track: 'DATA_ANALYTICS',
-      notes: 'Good Python skills but limited experience in data analytics.',
+      notes: 'Good Python skills but limited experience.',
     },
     {
       firstName: 'Dawit',
@@ -74,7 +73,7 @@ async function main() {
       phone: '+251915678901',
       status: 'PENDING',
       track: 'UIUX_DESIGN',
-      notes: 'Excellent portfolio with UI/UX projects. Designed interfaces e-commerce platforms.',
+      notes: 'Excellent portfolio with UI/UX projects.',
     },
     {
       firstName: 'Eden',
@@ -83,7 +82,7 @@ async function main() {
       phone: '+251916789012',
       status: 'SHORTLISTED',
       track: 'BACKEND_DEVELOPMENT',
-      notes: 'Strong Java and Spring Boot experience. Contributed to Ethiopian government digital projects.',
+      notes: 'Strong Java and Spring Boot experience.',
     },
     {
       firstName: 'Yonas',
@@ -92,7 +91,7 @@ async function main() {
       phone: '+251917890123',
       status: 'PENDING',
       track: 'FRONTEND_DEVELOPMENT',
-      notes: 'Vue.js and Angular experience. Built student management system for high schools.',
+      notes: 'Vue.js and Angular experience.',
     },
     {
       firstName: 'Hanna',
@@ -101,7 +100,7 @@ async function main() {
       phone: '+251918901234',
       status: 'PENDING',
       track: 'MOBILE_DEVELOPMENT',
-      notes: 'Android development experience. Published 3 apps on Google Play Store.',
+      notes: 'Android development experience.',
     },
     {
       firstName: 'Biruk',
@@ -110,7 +109,7 @@ async function main() {
       phone: '+251919012345',
       status: 'REJECTED',
       track: 'DATA_ANALYTICS',
-      notes: 'Good SQL skills but needs more experience with Python and data visualization.',
+      notes: 'Good SQL skills but needs more experience.',
     },
     {
       firstName: 'Saron',
@@ -119,7 +118,7 @@ async function main() {
       phone: '+251920123456',
       status: 'SHORTLISTED',
       track: 'UIUX_DESIGN',
-      notes: 'Creative designer with strong portfolio. Worked on Ethiopian fintech products.',
+      notes: 'Creative designer with strong portfolio.',
     },
     {
       firstName: 'Nathan',
@@ -128,7 +127,7 @@ async function main() {
       phone: '+251921234567',
       status: 'ACCEPTED',
       track: 'BACKEND_DEVELOPMENT',
-      notes: 'Experienced Node.js developer. Built scalable APIs for Ethiopian logistics companies.',
+      notes: 'Experienced Node.js developer.',
     },
     {
       firstName: 'Bethelhem',
@@ -137,7 +136,7 @@ async function main() {
       phone: '+251922345678',
       status: 'PENDING',
       track: 'FRONTEND_DEVELOPMENT',
-      notes: 'Strong JavaScript and React skills. Led frontend development at Ethiopian edtech startup.',
+      notes: 'Strong JavaScript and React skills.',
     },
   ];
 
@@ -157,7 +156,6 @@ async function main() {
   }
 
   console.log('🌱 Seeding completed successfully!');
-  console.log(`📊 Created ${sampleApplicants.length} applicant records`);
 }
 
 main()
