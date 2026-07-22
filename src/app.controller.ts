@@ -1,12 +1,20 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Public } from './common/decorators/public.decorator';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Public()
+  @Get('api')
+  getApiInfo() {
+    return {
+      name: 'Internship Applicant Management API',
+      version: '1.0',
+      documentation: '/api/docs',
+      endpoints: {
+        auth: '/api/auth/login',
+        applicants: '/api/applicants',
+        dashboard: '/api/dashboard/summary',
+      },
+    };
   }
 }

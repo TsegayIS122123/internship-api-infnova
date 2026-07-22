@@ -1,6 +1,5 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEnum, IsInt, IsOptional, IsString, Min, Max } from 'class-validator';
-import { Status, Track } from '@prisma/client';
+import { IsIn, IsInt, IsOptional, IsString, Min, Max } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class QueryApplicantsDto {
@@ -39,22 +38,22 @@ export class QueryApplicantsDto {
   search?: string;
 
   @ApiPropertyOptional({
-    enum: Status,
+    enum: ['PENDING', 'SHORTLISTED', 'ACCEPTED', 'REJECTED'],
     example: 'PENDING',
     description: 'Filter by status',
   })
   @IsOptional()
-  @IsEnum(Status)
-  status?: Status;
+  @IsIn(['PENDING', 'SHORTLISTED', 'ACCEPTED', 'REJECTED'])
+  status?: string;
 
   @ApiPropertyOptional({
-    enum: Track,
+    enum: ['FRONTEND_DEVELOPMENT', 'BACKEND_DEVELOPMENT', 'MOBILE_DEVELOPMENT', 'UIUX_DESIGN', 'DATA_ANALYTICS'],
     example: 'BACKEND_DEVELOPMENT',
     description: 'Filter by internship track',
   })
   @IsOptional()
-  @IsEnum(Track)
-  track?: Track;
+  @IsIn(['FRONTEND_DEVELOPMENT', 'BACKEND_DEVELOPMENT', 'MOBILE_DEVELOPMENT', 'UIUX_DESIGN', 'DATA_ANALYTICS'])
+  track?: string;
 
   @ApiPropertyOptional({
     example: 'createdAt',

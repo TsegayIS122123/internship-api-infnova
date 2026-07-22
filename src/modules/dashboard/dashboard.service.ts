@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Status, Track } from '@prisma/client';
 
 @Injectable()
 export class DashboardService {
@@ -39,7 +38,8 @@ export class DashboardService {
       },
     });
 
-    const statusSummary = Object.values(Status).map((status) => {
+    const statusOptions = ['PENDING', 'SHORTLISTED', 'ACCEPTED', 'REJECTED'];
+    const statusSummary = statusOptions.map((status) => {
       const found = statusCounts.find((item) => item.status === status);
       return {
         status,
@@ -47,7 +47,14 @@ export class DashboardService {
       };
     });
 
-    const trackSummary = Object.values(Track).map((track) => {
+    const trackOptions = [
+      'FRONTEND_DEVELOPMENT',
+      'BACKEND_DEVELOPMENT',
+      'MOBILE_DEVELOPMENT',
+      'UIUX_DESIGN',
+      'DATA_ANALYTICS'
+    ];
+    const trackSummary = trackOptions.map((track) => {
       const found = trackCounts.find((item) => item.track === track);
       return {
         track,

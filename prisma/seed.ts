@@ -156,6 +156,7 @@ async function main() {
   }
 
   console.log('🌱 Seeding completed successfully!');
+  console.log(`📊 Created ${sampleApplicants.length} applicant records`);
 }
 
 main()

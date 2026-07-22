@@ -108,6 +108,7 @@ export class ApplicantsController {
     return this.applicantsService.updateStatus(id, updateStatusDto.status);
   }
 
+  // Update the updateNotes method
   @Patch(':id/notes')
   @ApiOperation({ summary: 'Update applicant notes' })
   @ApiParam({ name: 'id', description: 'Applicant ID', example: 1 })

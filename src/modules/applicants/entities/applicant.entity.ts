@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Status, Track } from '@prisma/client';
 
 export class ApplicantEntity {
   @ApiProperty({ example: 1 })
@@ -17,11 +16,17 @@ export class ApplicantEntity {
   @ApiProperty({ example: '+251911234567', required: false })
   phone?: string;
 
-  @ApiProperty({ enum: Status, example: 'PENDING' })
-  status: Status;
+  @ApiProperty({ 
+    example: 'PENDING',
+    enum: ['PENDING', 'SHORTLISTED', 'ACCEPTED', 'REJECTED']
+  })
+  status: string;
 
-  @ApiProperty({ enum: Track, example: 'BACKEND_DEVELOPMENT' })
-  track: Track;
+  @ApiProperty({ 
+    example: 'BACKEND_DEVELOPMENT',
+    enum: ['FRONTEND_DEVELOPMENT', 'BACKEND_DEVELOPMENT', 'MOBILE_DEVELOPMENT', 'UIUX_DESIGN', 'DATA_ANALYTICS']
+  })
+  track: string;
 
   @ApiProperty({ example: 'Strong Node.js skills', required: false })
   notes?: string;

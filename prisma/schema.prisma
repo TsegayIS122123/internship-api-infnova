@@ -25,9 +25,9 @@ model Applicant {
   lastName   String
   email      String   @unique
   phone      String?
-  status     Status   @default(PENDING)
-  track      Track
-  notes      String?  @db.Text
+  status     String   @default("PENDING")  // ✅ Changed from enum to String
+  track      String                         // ✅ Changed from enum to String
+  notes      String?                        // ✅ Removed @db.Text
   deletedAt  DateTime?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -37,19 +37,4 @@ model Applicant {
   @@index([track])
   @@index([deletedAt])
   @@map("applicants")
-}
-
-enum Status {
-  PENDING
-  SHORTLISTED
-  ACCEPTED
-  REJECTED
-}
-
-enum Track {
-  FRONTEND_DEVELOPMENT
-  BACKEND_DEVELOPMENT
-  MOBILE_DEVELOPMENT
-  UIUX_DESIGN
-  DATA_ANALYTICS
 }

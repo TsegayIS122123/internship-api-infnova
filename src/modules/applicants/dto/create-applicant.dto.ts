@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
-  IsEnum,
+  IsIn,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -9,7 +9,6 @@ import {
   MinLength,
   Matches,
 } from 'class-validator';
-import { Track } from '@prisma/client';
 
 export class CreateApplicantDto {
   @ApiProperty({
@@ -57,13 +56,13 @@ export class CreateApplicantDto {
   phone?: string;
 
   @ApiProperty({
-    enum: Track,
+    enum: ['FRONTEND_DEVELOPMENT', 'BACKEND_DEVELOPMENT', 'MOBILE_DEVELOPMENT', 'UIUX_DESIGN', 'DATA_ANALYTICS'],
     example: 'BACKEND_DEVELOPMENT',
     description: 'Internship track',
   })
-  @IsEnum(Track)
+  @IsIn(['FRONTEND_DEVELOPMENT', 'BACKEND_DEVELOPMENT', 'MOBILE_DEVELOPMENT', 'UIUX_DESIGN', 'DATA_ANALYTICS'])
   @IsNotEmpty()
-  track: Track;
+  track: string;
 
   @ApiProperty({
     example: 'Strong Node.js and TypeScript experience',

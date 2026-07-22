@@ -8,7 +8,6 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateApplicantDto } from './dto/create-applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
 import { QueryApplicantsDto } from './dto/query-applicants.dto';
-import { Status } from '@prisma/client';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
@@ -30,7 +29,7 @@ export class ApplicantsService {
       const applicant = await this.prisma.applicant.create({
         data: {
           ...createDto,
-          status: Status.PENDING,
+          status: 'PENDING',
         },
       });
       return applicant;
@@ -55,15 +54,15 @@ export class ApplicantsService {
       sortOrder = 'desc' 
     } = query;
 
-    const where: Prisma.ApplicantWhereInput = {
+    const where: any = {
       deletedAt: null,
     };
 
     if (search) {
       where.OR = [
-        { firstName: { contains: search, mode: Prisma.QueryMode.insensitive } },
-        { lastName: { contains: search, mode: Prisma.QueryMode.insensitive } },
-        { email: { contains: search, mode: Prisma.QueryMode.insensitive } },
+        { firstName: { contains: search } },
+        { lastName: { contains: search } },
+        { email: { contains: search } },
       ];
     }
 
@@ -153,10 +152,10 @@ export class ApplicantsService {
     }
   }
 
-  async updateStatus(id: number, newStatus: Status) {
+  async updateStatus(id: number, newStatus: string) {
     const applicant = await this.findOne(id);
 
-    if (applicant.status === Status.REJECTED && newStatus === Status.ACCEPTED) {
+    if (applicant.status === 'REJECTED' && newStatus === 'ACCEPTED') {
       throw new BadRequestException(
         'Cannot move applicant from Rejected to Accepted status',
       );
@@ -168,7 +167,7 @@ export class ApplicantsService {
     });
   }
 
-  async updateNotes(id: number, notes: string | null) {
+  async updateNotes(id: number, notes: string | null | undefined) {
     await this.findOne(id);
 
     if (notes && notes.length > 1000) {
@@ -177,7 +176,7 @@ export class ApplicantsService {
 
     return this.prisma.applicant.update({
       where: { id },
-      data: { notes },
+      data: { notes: notes || null },
     });
   }
 
